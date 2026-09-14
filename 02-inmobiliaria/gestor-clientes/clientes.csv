@@ -1,0 +1,4 @@
+ID,Nombre,Telefono,Email,Tipo,Inmueble,Estado,Proxima_Accion,Observaciones
+001,Cliente Ejemplo,600000000,ejemplo@email.com,Comprador,Vivienda,Nuevo,Contactar,Datos ficticios
+002,Ana Garcia,611111111,ana@example.com,Inversor,Apartamento,En seguimiento,Enviar informacion,Datos ficticios
+003,John Smith,622222222,john@example.com,Comprador,Vivienda,Visita programada,Confirmar visita,Datos ficticios
