@@ -10,8 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const inmuebles = JSON.parse(
         localStorage.getItem("nexora_inmuebles") || "[]"
+      
     );
-
+  let inmuebleEditando = null;
     boton.addEventListener("click", function () {
 
         const campos = formulario.querySelectorAll("input, select");
@@ -32,7 +33,23 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        inmuebles.push(inmueble);
+        if (inmuebleEditando) {
+
+    const posicion = inmuebles.indexOf(inmuebleEditando);
+
+    if (posicion !== -1) {
+        inmuebles[posicion] = inmueble;
+    }
+
+    inmuebleEditando = null;
+    boton.textContent = "Guardar inmueble";
+
+} else {
+
+    inmuebles.push(inmueble);
+
+}
+       
 
         localStorage.setItem(
             "nexora_inmuebles",
@@ -78,7 +95,40 @@ function mostrarInmuebles() {
             🛏️ ${inmueble.habitaciones} habitaciones ·
             🚿 ${inmueble.banos} baños
         `;
+const botonEditar = document.createElement("button");
 
+botonEditar.textContent = "✏️ Editar";
+
+botonEditar.style.marginTop = "10px";
+botonEditar.style.padding = "8px 12px";
+botonEditar.style.border = "none";
+botonEditar.style.borderRadius = "6px";
+botonEditar.style.cursor = "pointer";
+
+botonEditar.addEventListener("click", function () {
+
+    const campos = formulario.querySelectorAll("input, select");
+
+    campos[0].value = inmueble.referencia;
+    campos[1].value = inmueble.tipo;
+    campos[2].value = inmueble.operacion;
+    campos[3].value = inmueble.zona;
+    campos[4].value = inmueble.precio;
+    campos[5].value = inmueble.superficie;
+    campos[6].value = inmueble.habitaciones;
+    campos[7].value = inmueble.banos;
+
+    inmuebleEditando = inmueble;
+
+    boton.textContent = "Actualizar inmueble";
+
+    formulario.scrollIntoView({
+        behavior: "smooth"
+    });
+
+});
+
+tarjeta.appendChild(botonEditar);
         lista.appendChild(tarjeta);
 
     });
