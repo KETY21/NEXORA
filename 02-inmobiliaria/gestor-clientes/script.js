@@ -75,6 +75,18 @@ document.addEventListener("DOMContentLoaded", function () {
         fila.appendChild(tipo);
         fila.appendChild(inmueble);
         fila.appendChild(estado);
+                const acciones = document.createElement("td");
+
+        const botonEditar = document.createElement("button");
+        botonEditar.textContent = "✏️ Editar";
+
+        const botonEliminar = document.createElement("button");
+        botonEliminar.textContent = "🗑️ Eliminar";
+
+        acciones.appendChild(botonEditar);
+        acciones.appendChild(botonEliminar);
+
+        fila.appendChild(acciones);
 
         tabla.appendChild(fila);
     }
