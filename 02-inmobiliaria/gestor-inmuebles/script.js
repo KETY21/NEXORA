@@ -42,6 +42,47 @@ document.addEventListener("DOMContentLoaded", function () {
         formulario.reset();
 
         alert("Inmueble guardado correctamente en NEXORA");
+        mostrarInmuebles();
     });
+function mostrarInmuebles() {
 
+    const lista = document.querySelector("#listaInmuebles");
+
+    if (!lista) {
+        return;
+    }
+
+    lista.innerHTML = "";
+
+    if (inmuebles.length === 0) {
+        lista.innerHTML = "<p>No hay inmuebles registrados todavía.</p>";
+        return;
+    }
+
+    inmuebles.forEach(function (inmueble) {
+
+        const tarjeta = document.createElement("div");
+
+        tarjeta.style.border = "1px solid #e5e7eb";
+        tarjeta.style.borderRadius = "10px";
+        tarjeta.style.padding = "15px";
+        tarjeta.style.marginBottom = "12px";
+
+        tarjeta.innerHTML = `
+            <strong>${inmueble.referencia}</strong><br>
+            🏠 ${inmueble.tipo}<br>
+            🔑 ${inmueble.operacion}<br>
+            📍 ${inmueble.zona}<br>
+            💶 ${inmueble.precio} €<br>
+            📐 ${inmueble.superficie} m²<br>
+            🛏️ ${inmueble.habitaciones} habitaciones ·
+            🚿 ${inmueble.banos} baños
+        `;
+
+        lista.appendChild(tarjeta);
+
+    });
+}
+
+mostrarInmuebles();
 });
