@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const boton = document.querySelector(".boton");
     const formulario = document.querySelector("form");
     const tabla = document.querySelector(".tabla tbody");
+    const contadores = document.querySelectorAll(".dashboard .number");
 
     if (!boton || !formulario || !tabla) {
         console.error("No se encontró el formulario, botón o tabla.");
         return;
     }
 
-    // Cargar clientes guardados anteriormente
     const clientes = JSON.parse(
         localStorage.getItem("nexora_clientes") || "[]"
     );
@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
         añadirClienteATabla(cliente);
     });
 
-    // Guardar nuevo cliente
+    actualizarContadores();
+
     boton.addEventListener("click", function () {
 
         const campos = formulario.querySelectorAll("input, select");
@@ -48,6 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         formulario.reset();
 
+        actualizarContadores();
+
         alert("Cliente guardado correctamente en NEXORA");
     });
 
@@ -74,6 +77,34 @@ document.addEventListener("DOMContentLoaded", function () {
         fila.appendChild(estado);
 
         tabla.appendChild(fila);
+    }
+
+    function actualizarContadores() {
+
+        const filas = tabla.querySelectorAll("tr");
+
+        let seguimiento = 0;
+        let visitas = 0;
+
+        filas.forEach(function (fila) {
+
+            const estado = fila
+                .querySelector(".estado")
+                .textContent
+                .trim();
+
+            if (estado === "En seguimiento") {
+                seguimiento++;
+            }
+
+            if (estado === "Visita programada") {
+                visitas++;
+            }
+        });
+
+        contadores[0].textContent = filas.length;
+        contadores[1].textContent = seguimiento;
+        contadores[2].textContent = visitas;
     }
 
 });
