@@ -82,6 +82,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const botonEliminar = document.createElement("button");
         botonEliminar.textContent = "🗑️ Eliminar";
+                botonEliminar.addEventListener("click", function () {
+
+            const confirmar = confirm(
+                "¿Quieres eliminar este cliente?"
+            );
+
+            if (!confirmar) {
+                return;
+            }
+
+            const posicion = clientes.indexOf(cliente);
+
+            if (posicion !== -1) {
+                clientes.splice(posicion, 1);
+            }
+
+            localStorage.setItem(
+                "nexora_clientes",
+                JSON.stringify(clientes)
+            );
+
+            fila.remove();
+
+            actualizarContadores();
+
+        });
 
         acciones.appendChild(botonEditar);
         acciones.appendChild(botonEliminar);
