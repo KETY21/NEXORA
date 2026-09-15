@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const tabla = document.querySelector(".tabla tbody");
     const contadores = document.querySelectorAll(".dashboard .number");
 const buscador = document.querySelector("#buscarCliente");
+    const filtroTipo = document.querySelector("#filtroTipo");
+const filtroEstado = document.querySelector("#filtroEstado");
     if (!boton || !formulario || !tabla) {
         console.error("No se encontró el formulario, botón o tabla.");
         return;
@@ -20,27 +22,51 @@ const buscador = document.querySelector("#buscarCliente");
     });
 
     actualizarContadores();
-buscador.addEventListener("input", function () {
+function aplicarFiltros() {
 
     const texto = buscador.value.toLowerCase().trim();
+    const tipoSeleccionado = filtroTipo.value;
+    const estadoSeleccionado = filtroEstado.value;
 
     const filas = tabla.querySelectorAll("tr");
 
     filas.forEach(function (fila) {
 
-        const datosVisibles = fila.textContent.toLowerCase();
+        const nombre = fila.cells[0].textContent.toLowerCase();
+        const tipo = fila.cells[1].textContent;
+        const inmueble = fila.cells[2].textContent.toLowerCase();
+        const estado = fila.cells[3].textContent;
+
+        const coincideTexto =
+            nombre.includes(texto) ||
+            inmueble.includes(texto);
 
         const cliente = clientes.find(function (c) {
             return c.nombre === fila.cells[0].textContent;
         });
 
         const datosCliente = cliente
-            ? (cliente.telefono + " " + cliente.email).toLowerCase()
+            ? (
+                cliente.telefono + " " +
+                cliente.email
+            ).toLowerCase()
             : "";
 
+        const coincideContacto =
+            datosCliente.includes(texto);
+
+        const coincideTipo =
+            !tipoSeleccionado ||
+            tipo === tipoSeleccionado;
+
+        const coincideEstado =
+            !estadoSeleccionado ||
+            estado === estadoSeleccionado;
+
         if (
-            datosVisibles.includes(texto) ||
-            datosCliente.includes(texto)
+            (coincideTexto || coincideContacto) &&
+            coincideTipo &&
+            coincideEstado
         ) {
             fila.style.display = "";
         } else {
@@ -48,6 +74,13 @@ buscador.addEventListener("input", function () {
         }
 
     });
+}
+
+buscador.addEventListener("input", aplicarFiltros);
+
+filtroTipo.addEventListener("change", aplicarFiltros);
+
+filtroEstado.addEventListener("change", aplicarFiltros);
 
 });
     boton.addEventListener("click", function () {
