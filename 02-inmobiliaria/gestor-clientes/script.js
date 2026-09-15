@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const formulario = document.querySelector("form");
     const tabla = document.querySelector(".tabla tbody");
     const contadores = document.querySelectorAll(".dashboard .number");
-
+const buscador = document.querySelector("#buscarCliente");
     if (!boton || !formulario || !tabla) {
         console.error("No se encontró el formulario, botón o tabla.");
         return;
@@ -20,7 +20,36 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     actualizarContadores();
+buscador.addEventListener("input", function () {
 
+    const texto = buscador.value.toLowerCase().trim();
+
+    const filas = tabla.querySelectorAll("tr");
+
+    filas.forEach(function (fila) {
+
+        const datosVisibles = fila.textContent.toLowerCase();
+
+        const cliente = clientes.find(function (c) {
+            return c.nombre === fila.cells[0].textContent;
+        });
+
+        const datosCliente = cliente
+            ? (cliente.telefono + " " + cliente.email).toLowerCase()
+            : "";
+
+        if (
+            datosVisibles.includes(texto) ||
+            datosCliente.includes(texto)
+        ) {
+            fila.style.display = "";
+        } else {
+            fila.style.display = "none";
+        }
+
+    });
+
+});
     boton.addEventListener("click", function () {
 
         const campos = formulario.querySelectorAll("input, select");
