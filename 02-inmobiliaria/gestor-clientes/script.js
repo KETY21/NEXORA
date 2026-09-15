@@ -1,15 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    const boton = document.querySelector(".boton");
     const formulario = document.querySelector("form");
     const tabla = document.querySelector(".tabla tbody");
 
-    if (!formulario || !tabla) {
-        console.error("No se encontró el formulario o la tabla.");
-        return;
-    }
-
-    formulario.addEventListener("submit", function (evento) {
-        evento.preventDefault();
+    boton.addEventListener("click", function () {
 
         const campos = formulario.querySelectorAll("input, select");
 
@@ -36,10 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         tabla.appendChild(fila);
 
-        const clientesGuardados =
-            JSON.parse(localStorage.getItem("nexora_clientes")) || [];
+        const clientes = JSON.parse(
+            localStorage.getItem("nexora_clientes") || "[]"
+        );
 
-        clientesGuardados.push({
+        clientes.push({
             nombre: nombre,
             telefono: telefono,
             email: email,
@@ -50,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         localStorage.setItem(
             "nexora_clientes",
-            JSON.stringify(clientesGuardados)
+            JSON.stringify(clientes)
         );
 
         formulario.reset();
