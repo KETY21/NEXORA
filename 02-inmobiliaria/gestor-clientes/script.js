@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const clientes = JSON.parse(
         localStorage.getItem("nexora_clientes") || "[]"
     );
+    let clienteEditando = null;
 
     clientes.forEach(function (cliente) {
         añadirClienteATabla(cliente);
@@ -38,20 +39,45 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        añadirClienteATabla(cliente);
+               if (clienteEditando) {
 
-        clientes.push(cliente);
+            clienteEditando.nombre = cliente.nombre;
+            clienteEditando.telefono = cliente.telefono;
+            clienteEditando.email = cliente.email;
+            clienteEditando.tipo = cliente.tipo;
+            clienteEditando.inmueble = cliente.inmueble;
+            clienteEditando.estado = cliente.estado;
 
-        localStorage.setItem(
-            "nexora_clientes",
-            JSON.stringify(clientes)
-        );
+            localStorage.setItem(
+                "nexora_clientes",
+                JSON.stringify(clientes)
+            );
 
-        formulario.reset();
+            formulario.reset();
 
-        actualizarContadores();
+            clienteEditando = null;
 
-        alert("Cliente guardado correctamente en NEXORA");
+            boton.textContent = "Guardar cliente";
+
+            location.reload();
+
+        } else {
+
+            añadirClienteATabla(cliente);
+
+            clientes.push(cliente);
+
+            localStorage.setItem(
+                "nexora_clientes",
+                JSON.stringify(clientes)
+            );
+
+            formulario.reset();
+
+            actualizarContadores();
+
+            alert("Cliente guardado correctamente en NEXORA");
+        }
     });
 
     function añadirClienteATabla(cliente) {
@@ -75,7 +101,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const botonEditar = document.createElement("button");
         botonEditar.textContent = "✏️ Editar";
+botonEditar.addEventListener("click", function () {
 
+    const campos = formulario.querySelectorAll("input, select");
+
+    campos[0].value = cliente.nombre;
+    campos[1].value = cliente.telefono;
+    campos[2].value = cliente.email;
+    campos[3].value = cliente.tipo;
+    campos[4].value = cliente.inmueble;
+    campos[5].value = cliente.estado;
+
+    clienteEditando = cliente;
+
+    boton.textContent = "Actualizar cliente";
+
+    formulario.scrollIntoView({
+        behavior: "smooth"
+    });
+
+});
         const botonEliminar = document.createElement("button");
         botonEliminar.textContent = "🗑️ Eliminar";
 
