@@ -1,1 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEXORA | Gestor de Inmuebles</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #1f2937;
+        }
+
+        header {
+            background: #172033;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            opacity: 0.8;
+        }
+
+        .contenedor {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .tarjeta {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+
+        .tarjeta h2 {
+            margin-top: 0;
+        }
+
+        .formulario {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .campo label {
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .campo input,
+        .campo select {
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .boton {
+            grid-column: 1 / -1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #172033;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 700px) {
+            .formulario {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🏠 NEXORA</h1>
+        <p>Gestor de Inmuebles</p>
+    </header>
+
+    <div class="contenedor">
+
+        <div class="tarjeta">
+
+            <h2>Nuevo inmueble</h2>
+
+            <form class="formulario">
+
+                <div class="campo">
+                    <label>Referencia</label>
+                    <input
+                        type="text"
+                        placeholder="Ej. NEX-001">
+                </div>
+
+                <div class="campo">
+                    <label>Tipo de inmueble</label>
+                    <select>
+                        <option value="">Seleccionar tipo</option>
+                        <option>Apartamento</option>
+                        <option>Piso</option>
+                        <option>Casa</option>
+                        <option>Chalet</option>
+                        <option>Local</option>
+                        <option>Terreno</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label>Operación</label>
+                    <select>
+                        <option value="">Seleccionar operación</option>
+                        <option>Venta</option>
+                        <option>Alquiler</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label>Zona</label>
+                    <input
+                        type="text"
+                        placeholder="Ej. San Pedro del Pinatar">
+                </div>
+
+                <div class="campo">
+                    <label>Precio (€)</label>
+                    <input
+                        type="number"
+                        placeholder="Ej. 185000">
+                </div>
+
+                <div class="campo">
+                    <label>Superficie (m²)</label>
+                    <input
+                        type="number"
+                        placeholder="Ej. 85">
+                </div>
+
+                <div class="campo">
+                    <label>Habitaciones</label>
+                    <input
+                        type="number"
+                        placeholder="Ej. 2">
+                </div>
+
+                <div class="campo">
+                    <label>Baños</label>
+                    <input
+                        type="number"
+                        placeholder="Ej. 2">
+                </div>
+
+                <button
+                    class="boton"
+                    type="button">
+                    Guardar inmueble
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
