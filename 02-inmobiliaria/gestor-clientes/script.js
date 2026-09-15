@@ -71,18 +71,15 @@ document.addEventListener("DOMContentLoaded", function () {
         estado.textContent = cliente.estado;
         estado.className = "estado";
 
-        fila.appendChild(nombre);
-        fila.appendChild(tipo);
-        fila.appendChild(inmueble);
-        fila.appendChild(estado);
-                const acciones = document.createElement("td");
+        const acciones = document.createElement("td");
 
         const botonEditar = document.createElement("button");
         botonEditar.textContent = "✏️ Editar";
 
         const botonEliminar = document.createElement("button");
         botonEliminar.textContent = "🗑️ Eliminar";
-                botonEliminar.addEventListener("click", function () {
+
+        botonEliminar.addEventListener("click", function () {
 
             const confirmar = confirm(
                 "¿Quieres eliminar este cliente?"
@@ -112,6 +109,10 @@ document.addEventListener("DOMContentLoaded", function () {
         acciones.appendChild(botonEditar);
         acciones.appendChild(botonEliminar);
 
+        fila.appendChild(nombre);
+        fila.appendChild(tipo);
+        fila.appendChild(inmueble);
+        fila.appendChild(estado);
         fila.appendChild(acciones);
 
         tabla.appendChild(fila);
