@@ -33,9 +33,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        if (inmuebleEditando) {
+       if (inmuebleEditando) {
 
-    const posicion = inmuebles.indexOf(inmuebleEditando);
+    const posicion = inmuebles.findIndex(function (item) {
+        return item.referencia === inmuebleEditando;
+    });
 
     if (posicion !== -1) {
         inmuebles[posicion] = inmueble;
@@ -45,6 +47,19 @@ document.addEventListener("DOMContentLoaded", function () {
     boton.textContent = "Guardar inmueble";
 
 } else {
+
+    const existe = inmuebles.some(function (item) {
+        return item.referencia === inmueble.referencia;
+    });
+
+    if (existe) {
+        alert("Ya existe un inmueble con esa referencia.");
+        return;
+    }
+
+    inmuebles.push(inmueble);
+
+}else {
 
     inmuebles.push(inmueble);
 
@@ -118,7 +133,7 @@ botonEditar.addEventListener("click", function () {
     campos[6].value = inmueble.habitaciones;
     campos[7].value = inmueble.banos;
 
-    inmuebleEditando = inmueble;
+   inmuebleEditando = inmueble.referencia;
 
     boton.textContent = "Actualizar inmueble";
 
