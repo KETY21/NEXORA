@@ -82,19 +82,21 @@ filtroTipo.addEventListener("change", aplicarFiltros);
 
 filtroEstado.addEventListener("change", aplicarFiltros);
 
-});
+
     boton.addEventListener("click", function () {
 
         const campos = formulario.querySelectorAll("input, select");
 
-        const cliente = {
-            nombre: campos[0].value.trim(),
-            telefono: campos[1].value.trim(),
-            email: campos[2].value.trim(),
-            tipo: campos[3].value,
-            inmueble: campos[4].value.trim(),
-            estado: campos[5].value
-        };
+    const cliente = {
+    nombre: campos[0].value.trim(),
+    telefono: campos[1].value.trim(),
+    email: campos[2].value.trim(),
+    tipo: campos[3].value,
+    inmueble: campos[4].value.trim(),
+    estado: campos[5].value,
+    proximaAccion: campos[6].value,
+    fechaSeguimiento: campos[7].value
+};
 
         if (!cliente.nombre) {
             alert("Introduce el nombre del cliente.");
@@ -109,7 +111,8 @@ filtroEstado.addEventListener("change", aplicarFiltros);
             clienteEditando.tipo = cliente.tipo;
             clienteEditando.inmueble = cliente.inmueble;
             clienteEditando.estado = cliente.estado;
-
+clienteEditando.proximaAccion = cliente.proximaAccion;
+clienteEditando.fechaSeguimiento = cliente.fechaSeguimiento;
             localStorage.setItem(
                 "nexora_clientes",
                 JSON.stringify(clientes)
@@ -173,7 +176,8 @@ botonEditar.addEventListener("click", function () {
     campos[3].value = cliente.tipo;
     campos[4].value = cliente.inmueble;
     campos[5].value = cliente.estado;
-
+campos[6].value = cliente.proximaAccion || "";
+campos[7].value = cliente.fechaSeguimiento || "";
     clienteEditando = cliente;
 
     boton.textContent = "Actualizar cliente";
