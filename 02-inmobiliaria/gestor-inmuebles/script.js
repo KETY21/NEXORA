@@ -59,11 +59,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     inmuebles.push(inmueble);
 
-}else {
 
-    inmuebles.push(inmueble);
 
-}
+  
+
+
        
 
         localStorage.setItem(
