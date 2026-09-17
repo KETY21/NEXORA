@@ -194,7 +194,12 @@
     </div class="tarjeta">
 
     <h2>📋 Inmuebles recientes</h2>
-
+<input
+    type="text"
+    id="buscadorInmuebles"
+    placeholder="🔎 Buscar por referencia, tipo, operación o zona..."
+    style="width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;"
+>
     <div id="listaInmuebles">
         <p>No hay inmuebles registrados todavía.</p>
     </div>
