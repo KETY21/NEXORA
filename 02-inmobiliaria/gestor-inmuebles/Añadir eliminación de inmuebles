@@ -141,9 +141,40 @@ botonEditar.addEventListener("click", function () {
         behavior: "smooth"
     });
 
+});const botonEliminar = document.createElement("button");
+
+botonEliminar.textContent = "🗑️ Eliminar";
+
+botonEliminar.style.marginTop = "10px";
+botonEliminar.style.marginLeft = "10px";
+botonEliminar.style.padding = "8px 12px";
+botonEliminar.style.border = "none";
+botonEliminar.style.borderRadius = "6px";
+botonEliminar.style.cursor = "pointer";
+
+botonEliminar.addEventListener("click", function () {
+
+    if (confirm("¿Seguro que quieres eliminar este inmueble?")) {
+
+        const posicion = inmuebles.findIndex(function (item) {
+            return item.referencia === inmueble.referencia;
+        });
+
+        if (posicion !== -1) {
+            inmuebles.splice(posicion, 1);
+
+            localStorage.setItem(
+                "nexora_inmuebles",
+                JSON.stringify(inmuebles)
+            );
+
+            mostrarInmuebles();
+        }
+    }
 });
 
 tarjeta.appendChild(botonEditar);
+   tarjeta.appendChild(botonEliminar);     
         lista.appendChild(tarjeta);
 
     });
