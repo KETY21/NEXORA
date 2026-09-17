@@ -13,6 +13,13 @@ document.addEventListener("DOMContentLoaded", function () {
       
     );
   let inmuebleEditando = null;
+   const buscador = document.querySelector("#buscadorInmuebles");
+
+if (buscador) {
+    buscador.addEventListener("input", function () {
+        mostrarInmuebles();
+    });
+} 
     boton.addEventListener("click", function () {
 
         const campos = formulario.querySelectorAll("input, select");
@@ -83,15 +90,28 @@ function mostrarInmuebles() {
     if (!lista) {
         return;
     }
+const textoBusqueda = buscador
+    ? buscador.value.toLowerCase().trim()
+    : "";
 
+const inmueblesFiltrados = inmuebles.filter(function (inmueble) {
+
+    return (
+        inmueble.referencia.toLowerCase().includes(textoBusqueda) ||
+        inmueble.tipo.toLowerCase().includes(textoBusqueda) ||
+        inmueble.operacion.toLowerCase().includes(textoBusqueda) ||
+        inmueble.zona.toLowerCase().includes(textoBusqueda)
+    );
+
+});
     lista.innerHTML = "";
 
-    if (inmuebles.length === 0) {
-        lista.innerHTML = "<p>No hay inmuebles registrados todavía.</p>";
-        return;
-    }
+  if (inmueblesFiltrados.length === 0) {
+    lista.innerHTML = "<p>No se encontraron inmuebles.</p>";
+    return;
+} 
 
-    inmuebles.forEach(function (inmueble) {
+ inmueblesFiltrados.forEach(function (inmueble) { 
 
         const tarjeta = document.createElement("div");
 
