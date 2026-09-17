@@ -40,7 +40,7 @@ if (buscador) {
             return;
         }
 
-       if (inmuebleEditando) {
+   if (inmuebleEditando) {
 
     const posicion = inmuebles.findIndex(function (item) {
         return item.referencia === inmuebleEditando;
@@ -65,6 +65,7 @@ if (buscador) {
     }
 
     inmuebles.push(inmueble);
+}
 
 
 
@@ -160,8 +161,8 @@ botonEditar.addEventListener("click", function () {
     formulario.scrollIntoView({
         behavior: "smooth"
     });
-
-});const botonEliminar = document.createElement("button");
+});
+const botonEliminar = document.createElement("button");
 
 botonEliminar.textContent = "🗑️ Eliminar";
 
