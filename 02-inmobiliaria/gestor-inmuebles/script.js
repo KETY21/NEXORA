@@ -20,6 +20,13 @@ if (buscador) {
         mostrarInmuebles();
     });
 } 
+   const filtroEstado = document.querySelector("#filtroEstado");
+
+if (filtroEstado) {
+    filtroEstado.addEventListener("change", function () {
+        mostrarInmuebles();
+    });
+} 
     boton.addEventListener("click", function () {
 
         const campos = formulario.querySelectorAll("input, select");
@@ -95,15 +102,20 @@ function mostrarInmuebles() {
 const textoBusqueda = buscador
     ? buscador.value.toLowerCase().trim()
     : "";
+    const filtroEstado = document.querySelector("#filtroEstado");
+const estadoSeleccionado = filtroEstado ? filtroEstado.value : "Todos";
 
 const inmueblesFiltrados = inmuebles.filter(function (inmueble) {
 
-    return (
+return (
+    (estadoSeleccionado === "Todos" || inmueble.estado === estadoSeleccionado) &&
+    (
         inmueble.referencia.toLowerCase().includes(textoBusqueda) ||
         inmueble.tipo.toLowerCase().includes(textoBusqueda) ||
         inmueble.operacion.toLowerCase().includes(textoBusqueda) ||
         inmueble.zona.toLowerCase().includes(textoBusqueda)
-    );
+    )
+);   
 
 });
     lista.innerHTML = "";
