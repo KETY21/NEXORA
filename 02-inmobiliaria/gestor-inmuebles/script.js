@@ -138,7 +138,7 @@ return (
             <strong>${inmueble.referencia}</strong><br>
             🏠 ${inmueble.tipo}<br>
             🔑 ${inmueble.operacion}<br>
-           📌 ${inmueble.estado}<br> 
+           <span class="estado ${inmueble.estado.toLowerCase()}">${inmueble.estado}</span><br>
             📍 ${inmueble.zona}<br>
             💶 ${inmueble.precio} €<br>
             📐 ${inmueble.superficie} m²<br>
