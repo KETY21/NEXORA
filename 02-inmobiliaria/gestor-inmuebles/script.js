@@ -91,7 +91,41 @@ if (filtroEstado) {
 
         alert("Inmueble guardado correctamente en NEXORA");
         mostrarInmuebles();
+         actualizarEstadisticas();
     });
+    function actualizarEstadisticas() {
+    const total = document.querySelector("#totalInmuebles");
+    const disponibles = document.querySelector("#totalDisponibles");
+    const reservados = document.querySelector("#totalReservados");
+    const vendidos = document.querySelector("#totalVendidos");
+    const alquilados = document.querySelector("#totalAlquilados");
+
+    if (total) total.textContent = inmuebles.length;
+
+    if (disponibles) {
+        disponibles.textContent = inmuebles.filter(
+            inmueble => inmueble.estado === "Disponible"
+        ).length;
+    }
+
+    if (reservados) {
+        reservados.textContent = inmuebles.filter(
+            inmueble => inmueble.estado === "Reservado"
+        ).length;
+    }
+
+    if (vendidos) {
+        vendidos.textContent = inmuebles.filter(
+            inmueble => inmueble.estado === "Vendido"
+        ).length;
+    }
+
+    if (alquilados) {
+        alquilados.textContent = inmuebles.filter(
+            inmueble => inmueble.estado === "Alquilado"
+        ).length;
+    }
+}
 function mostrarInmuebles() {
 
     const lista = document.querySelector("#listaInmuebles");
