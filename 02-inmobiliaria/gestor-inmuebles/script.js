@@ -251,4 +251,5 @@ tarjeta.appendChild(botonEditar);
 }
 
 mostrarInmuebles();
+ actualizarEstadisticas();   
 });
