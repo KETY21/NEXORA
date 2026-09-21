@@ -25,15 +25,16 @@ if (buscador) {
         const campos = formulario.querySelectorAll("input, select");
 
         const inmueble = {
-            referencia: campos[0].value.trim(),
-            tipo: campos[1].value,
-            operacion: campos[2].value,
-            zona: campos[3].value.trim(),
-            precio: campos[4].value.trim(),
-            superficie: campos[5].value.trim(),
-            habitaciones: campos[6].value.trim(),
-            banos: campos[7].value.trim()
-        };
+    referencia: campos[0].value.trim(),
+    tipo: campos[1].value,
+    operacion: campos[2].value,
+    estado: campos[3].value,
+    zona: campos[4].value.trim(),
+    precio: campos[5].value.trim(),
+    superficie: campos[6].value.trim(),
+    habitaciones: campos[7].value.trim(),
+    banos: campos[8].value.trim()
+};
 
         if (!inmueble.referencia) {
             alert("Introduce la referencia del inmueble.");
@@ -125,6 +126,7 @@ const inmueblesFiltrados = inmuebles.filter(function (inmueble) {
             <strong>${inmueble.referencia}</strong><br>
             🏠 ${inmueble.tipo}<br>
             🔑 ${inmueble.operacion}<br>
+           📌 ${inmueble.estado}<br> 
             📍 ${inmueble.zona}<br>
             💶 ${inmueble.precio} €<br>
             📐 ${inmueble.superficie} m²<br>
@@ -148,11 +150,12 @@ botonEditar.addEventListener("click", function () {
     campos[0].value = inmueble.referencia;
     campos[1].value = inmueble.tipo;
     campos[2].value = inmueble.operacion;
-    campos[3].value = inmueble.zona;
-    campos[4].value = inmueble.precio;
-    campos[5].value = inmueble.superficie;
-    campos[6].value = inmueble.habitaciones;
-    campos[7].value = inmueble.banos;
+    campos[3].value = inmueble.estado;
+    campos[4].value = inmueble.zona;
+campos[5].value = inmueble.precio;
+campos[6].value = inmueble.superficie;
+campos[7].value = inmueble.habitaciones;
+campos[8].value = inmueble.banos;
 
    inmuebleEditando = inmueble.referencia;
 
