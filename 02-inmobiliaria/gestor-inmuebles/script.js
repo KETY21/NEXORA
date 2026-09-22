@@ -222,18 +222,51 @@ botonFicha.style.borderRadius = "6px";
 botonFicha.style.cursor = "pointer";
 
 botonFicha.addEventListener("click", function () {
-    alert(
-        "Ficha del inmueble\n\n" +
-        "Referencia: " + inmueble.referencia + "\n" +
-        "Tipo: " + inmueble.tipo + "\n" +
-        "Operación: " + inmueble.operacion + "\n" +
-        "Estado: " + inmueble.estado + "\n" +
-        "Zona: " + inmueble.zona + "\n" +
-        "Precio: " + inmueble.precio + " €\n" +
-        "Superficie: " + inmueble.superficie + " m²\n" +
-        "Habitaciones: " + inmueble.habitaciones + "\n" +
-        "Baños: " + inmueble.banos
-    );
+const ficha = document.createElement("div");
+
+ficha.style.position = "fixed";
+ficha.style.top = "50%";
+ficha.style.left = "50%";
+ficha.style.transform = "translate(-50%, -50%)";
+ficha.style.background = "white";
+ficha.style.padding = "25px";
+ficha.style.borderRadius = "12px";
+ficha.style.boxShadow = "0 10px 30px rgba(0,0,0,0.3)";
+ficha.style.zIndex = "9999";
+ficha.style.width = "90%";
+ficha.style.maxWidth = "500px";
+ficha.style.fontFamily = "Arial, sans-serif";
+
+ficha.innerHTML = `
+    <h2 style="margin-top: 0;">🏠 Ficha del inmueble</h2>
+
+    <p><strong>📌 Referencia:</strong> ${inmueble.referencia}</p>
+    <p><strong>🏷️ Tipo:</strong> ${inmueble.tipo}</p>
+    <p><strong>🔄 Operación:</strong> ${inmueble.operacion}</p>
+    <p><strong>📍 Estado:</strong> ${inmueble.estado}</p>
+    <p><strong>📍 Zona:</strong> ${inmueble.zona}</p>
+    <p><strong>💰 Precio:</strong> ${inmueble.precio} €</p>
+    <p><strong>📐 Superficie:</strong> ${inmueble.superficie} m²</p>
+    <p><strong>🛏️ Habitaciones:</strong> ${inmueble.habitaciones}</p>
+    <p><strong>🚿 Baños:</strong> ${inmueble.banos}</p>
+
+    <button id="cerrarFicha"
+        style="
+            margin-top: 15px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        ">
+        Cerrar
+    </button>
+`;
+
+document.body.appendChild(ficha);
+
+document.querySelector("#cerrarFicha").addEventListener("click", function () {
+    ficha.remove();
+});
 });
 const botonEliminar = document.createElement("button");
 
