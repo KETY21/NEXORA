@@ -211,6 +211,30 @@ campos[8].value = inmueble.banos;
         behavior: "smooth"
     });
 });
+     const botonFicha = document.createElement("button");
+
+botonFicha.textContent = "👁️ Ver ficha";
+botonFicha.style.marginTop = "10px";
+botonFicha.style.marginLeft = "10px";
+botonFicha.style.padding = "8px 12px";
+botonFicha.style.border = "none";
+botonFicha.style.borderRadius = "6px";
+botonFicha.style.cursor = "pointer";
+
+botonFicha.addEventListener("click", function () {
+    alert(
+        "Ficha del inmueble\n\n" +
+        "Referencia: " + inmueble.referencia + "\n" +
+        "Tipo: " + inmueble.tipo + "\n" +
+        "Operación: " + inmueble.operacion + "\n" +
+        "Estado: " + inmueble.estado + "\n" +
+        "Zona: " + inmueble.zona + "\n" +
+        "Precio: " + inmueble.precio + " €\n" +
+        "Superficie: " + inmueble.superficie + " m²\n" +
+        "Habitaciones: " + inmueble.habitaciones + "\n" +
+        "Baños: " + inmueble.banos
+    );
+});
 const botonEliminar = document.createElement("button");
 
 botonEliminar.textContent = "🗑️ Eliminar";
@@ -243,8 +267,9 @@ botonEliminar.addEventListener("click", function () {
     }
 });
 
-tarjeta.appendChild(botonEditar);
-   tarjeta.appendChild(botonEliminar);     
+   tarjeta.appendChild(botonEditar);
+tarjeta.appendChild(botonFicha);
+tarjeta.appendChild(botonEliminar);
         lista.appendChild(tarjeta);
 
     });
