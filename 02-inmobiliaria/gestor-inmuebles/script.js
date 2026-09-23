@@ -27,10 +27,10 @@ if (filtroEstado) {
         mostrarInmuebles();
     });
 } 
-    boton.addEventListener("click", function () {
+boton.addEventListener("click", async function () {   
 
         const campos = formulario.querySelectorAll("input, select");
-
+const fotoInput = document.querySelector("#fotoInmueble");
         const inmueble = {
     referencia: campos[0].value.trim(),
     tipo: campos[1].value,
